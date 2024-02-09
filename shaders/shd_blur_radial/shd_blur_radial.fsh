@@ -8,6 +8,7 @@ void main() {
     vec2 texel = 1.0 / texture_size;
     
     vec4 total_color = vec4(0);
+    float total_samples = 0.0;
     
     float samples = 32.0;
     float scale = blur_radius / sqrt(samples);
@@ -21,10 +22,13 @@ void main() {
             -sin(i)
         ) * texel * scale * (current_radius - 1.0);
         
-        total_color += texture2D(gm_BaseTexture, sample_coords);
+        float sample_weight = 1.0 / current_radius;
+        total_samples += sample_weight;
+        
+        total_color += texture2D(gm_BaseTexture, sample_coords) * sample_weight;
     }
     
-    total_color /= samples;
+    total_color /= total_samples;
     
     
     
