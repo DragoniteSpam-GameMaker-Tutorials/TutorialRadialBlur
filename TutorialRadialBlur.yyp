@@ -19,6 +19,7 @@
   },
   "resources": [
     {"id":{"name":"shd_blur_v","path":"shaders/shd_blur_v/shd_blur_v.yy",},},
+    {"id":{"name":"shd_blur_radial","path":"shaders/shd_blur_radial/shd_blur_radial.yy",},},
     {"id":{"name":"shd_blur_h","path":"shaders/shd_blur_h/shd_blur_h.yy",},},
     {"id":{"name":"Object1","path":"objects/Object1/Object1.yy",},},
     {"id":{"name":"spr_bunny","path":"sprites/spr_bunny/spr_bunny.yy",},},
