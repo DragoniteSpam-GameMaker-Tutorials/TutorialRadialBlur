@@ -3,6 +3,15 @@ varying vec4 v_vColour;
 
 uniform vec2 texture_size;
 uniform float blur_radius;
+uniform float sample_count;
+
+vec2 random(vec2 value) {
+    vec4 coefficients = vec4(0.861340446, 0.3840795681, 0.861340446, 0.3840795681);
+	return normalize(vec2(
+        fract(cos(dot(value, coefficients.xy)) * 9517.1063),
+        fract(cos(dot(value, coefficients.zw)) * 4375.5453)
+    ) - 0.5);
+}
 
 void main() {
     vec2 texel = 1.0 / texture_size;
@@ -10,14 +19,13 @@ void main() {
     vec4 total_color = vec4(0);
     float total_samples = 0.0;
     
-    float samples = 32.0;
-    float scale = blur_radius / sqrt(samples);
+    float scale = blur_radius / sqrt(sample_count);
     float current_radius = 1.0;
     
-    vec2 rotated_coords = vec2(scale, 0.0);
+    vec2 rotated_coords = random(v_vTexcoord) * scale;
     mat2 rotation_angle = mat2(-0.7373688, -0.6754904, 0.6754904, -0.7373688);
     
-    for (float i = 0.0; i < samples; i += 1.0) {
+    for (float i = 0.0; i < sample_count; i += 1.0) {
         current_radius += 1.0 / current_radius;
         rotated_coords *= rotation_angle;
         
