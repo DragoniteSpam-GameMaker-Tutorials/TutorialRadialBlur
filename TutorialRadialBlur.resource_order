@@ -1,0 +1,10 @@
+{
+  "FolderOrderSettings": [],
+  "ResourceOrderSettings": [
+    {"name":"shd_blur_v","order":21,"path":"shaders/shd_blur_v/shd_blur_v.yy",},
+    {"name":"shd_blur_h","order":20,"path":"shaders/shd_blur_h/shd_blur_h.yy",},
+    {"name":"Object1","order":15,"path":"objects/Object1/Object1.yy",},
+    {"name":"spr_bunny","order":18,"path":"sprites/spr_bunny/spr_bunny.yy",},
+    {"name":"Room1","order":14,"path":"rooms/Room1/Room1.yy",},
+  ],
+}
