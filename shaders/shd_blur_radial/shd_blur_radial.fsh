@@ -14,13 +14,14 @@ void main() {
     float scale = blur_radius / sqrt(samples);
     float current_radius = 1.0;
     
-    for (float i = 0.0; i < 6.28; i += 6.28 / samples) {
+    vec2 rotated_coords = vec2(scale, 0.0);
+    mat2 rotation_angle = mat2(-0.7373688, -0.6754904, 0.6754904, -0.7373688);
+    
+    for (float i = 0.0; i < samples; i += 1.0) {
         current_radius += 1.0 / current_radius;
+        rotated_coords *= rotation_angle;
         
-        vec2 sample_coords = v_vTexcoord + vec2(
-            cos(i),
-            -sin(i)
-        ) * texel * scale * (current_radius - 1.0);
+        vec2 sample_coords = v_vTexcoord + rotated_coords * texel * (current_radius - 1.0);
         
         float sample_weight = 1.0 / current_radius;
         total_samples += sample_weight;
